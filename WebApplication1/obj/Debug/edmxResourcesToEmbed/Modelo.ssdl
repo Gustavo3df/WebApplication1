@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="estacionamientoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Deuda">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Valor" Type="int" Nullable="false" />
+    <Property Name="Pagado" Type="tinyint" Nullable="false" />
+    <Property Name="TiempoActivo" Type="int" Nullable="false" />
+    <Property Name="OperadorRut" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="EgresoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Egreso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="IngresoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ingreso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="OperadorRut" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="VehiculoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Operador">
+    <Key>
+      <PropertyRef Name="Rut" />
+    </Key>
+    <Property Name="Rut" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Contrasena" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="TurnoId" Type="int" Nullable="false" />
+    <Property Name="RolId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="13" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Turno">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vehiculo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Patente" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Deuda_ToEgreso">
+    <End Role="Egreso" Type="Self.Egreso" Multiplicity="1" />
+    <End Role="Deuda" Type="Self.Deuda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Egreso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Deuda">
+        <PropertyRef Name="EgresoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deuda_ToOperador">
+    <End Role="Operador" Type="Self.Operador" Multiplicity="1" />
+    <End Role="Deuda" Type="Self.Deuda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operador">
+        <PropertyRef Name="Rut" />
+      </Principal>
+      <Dependent Role="Deuda">
+        <PropertyRef Name="OperadorRut" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Egreso_ToIngreso">
+    <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="1" />
+    <End Role="Egreso" Type="Self.Egreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingreso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Egreso">
+        <PropertyRef Name="IngresoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ingreso_ToOperador">
+    <End Role="Operador" Type="Self.Operador" Multiplicity="1" />
+    <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operador">
+        <PropertyRef Name="Rut" />
+      </Principal>
+      <Dependent Role="Ingreso">
+        <PropertyRef Name="OperadorRut" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ingreso_ToVehiculo">
+    <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="1" />
+    <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehiculo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ingreso">
+        <PropertyRef Name="VehiculoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Operador_ToRol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="Operador" Type="Self.Operador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Operador">
+        <PropertyRef Name="RolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Operador_ToTurno">
+    <End Role="Turno" Type="Self.Turno" Multiplicity="1" />
+    <End Role="Operador" Type="Self.Operador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Turno">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Operador">
+        <PropertyRef Name="TurnoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="estacionamientoModelStoreContainer">
+    <EntitySet Name="Deuda" EntityType="Self.Deuda" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Egreso" EntityType="Self.Egreso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ingreso" EntityType="Self.Ingreso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Operador" EntityType="Self.Operador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Turno" EntityType="Self.Turno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vehiculo" EntityType="Self.Vehiculo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Deuda_ToEgreso" Association="Self.FK_Deuda_ToEgreso">
+      <End Role="Egreso" EntitySet="Egreso" />
+      <End Role="Deuda" EntitySet="Deuda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deuda_ToOperador" Association="Self.FK_Deuda_ToOperador">
+      <End Role="Operador" EntitySet="Operador" />
+      <End Role="Deuda" EntitySet="Deuda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Egreso_ToIngreso" Association="Self.FK_Egreso_ToIngreso">
+      <End Role="Ingreso" EntitySet="Ingreso" />
+      <End Role="Egreso" EntitySet="Egreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ingreso_ToOperador" Association="Self.FK_Ingreso_ToOperador">
+      <End Role="Operador" EntitySet="Operador" />
+      <End Role="Ingreso" EntitySet="Ingreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ingreso_ToVehiculo" Association="Self.FK_Ingreso_ToVehiculo">
+      <End Role="Vehiculo" EntitySet="Vehiculo" />
+      <End Role="Ingreso" EntitySet="Ingreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Operador_ToRol" Association="Self.FK_Operador_ToRol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Operador" EntitySet="Operador" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Operador_ToTurno" Association="Self.FK_Operador_ToTurno">
+      <End Role="Turno" EntitySet="Turno" />
+      <End Role="Operador" EntitySet="Operador" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

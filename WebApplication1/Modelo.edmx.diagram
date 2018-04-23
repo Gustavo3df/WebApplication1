@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dd42701f254b4bd790b156b34b7db92d" Name="Diagram1">
+        <EntityTypeShape EntityType="estacionamientoModel.Deuda" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="estacionamientoModel.Egreso" Width="1.5" PointX="10.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="estacionamientoModel.Ingreso" Width="1.5" PointX="8.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="estacionamientoModel.Operador" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="estacionamientoModel.Rol" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="estacionamientoModel.Turno" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="estacionamientoModel.Vehiculo" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="estacionamientoModel.FK_Deuda_ToEgreso" ManuallyRouted="false" />
+        <AssociationConnector Association="estacionamientoModel.FK_Deuda_ToOperador" ManuallyRouted="false" />
+        <AssociationConnector Association="estacionamientoModel.FK_Egreso_ToIngreso" ManuallyRouted="false" />
+        <AssociationConnector Association="estacionamientoModel.FK_Ingreso_ToOperador" ManuallyRouted="false" />
+        <AssociationConnector Association="estacionamientoModel.FK_Ingreso_ToVehiculo" ManuallyRouted="false" />
+        <AssociationConnector Association="estacionamientoModel.FK_Operador_ToRol" ManuallyRouted="false" />
+        <AssociationConnector Association="estacionamientoModel.FK_Operador_ToTurno" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
