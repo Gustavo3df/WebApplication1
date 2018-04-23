@@ -157,6 +157,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Operadorsontroller.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Deuda.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
@@ -259,6 +260,11 @@
     <Content Include="Views\Rol\Details.cshtml" />
     <Content Include="Views\Rol\Edit.cshtml" />
     <Content Include="Views\Rol\Index.cshtml" />
+    <Content Include="Views\Operadorsontroller\Create.cshtml" />
+    <Content Include="Views\Operadorsontroller\Delete.cshtml" />
+    <Content Include="Views\Operadorsontroller\Details.cshtml" />
+    <Content Include="Views\Operadorsontroller\Edit.cshtml" />
+    <Content Include="Views\Operadorsontroller\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

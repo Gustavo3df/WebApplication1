@@ -1,0 +1,50 @@
+﻿@model WebApplication1.Operador
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Operador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contrasena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contrasena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rol.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rol.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Turno.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Turno.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Rut }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
